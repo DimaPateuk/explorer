@@ -1,5 +1,9 @@
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+
+// Configure Helius RPC for tests to avoid 429 rate limiting
+// Note: .env file is used for Next.js dev/build, but Vitest needs explicit process.env assignment
+process.env.NEXT_PUBLIC_MAINNET_RPC_URL = 'https://mainnet.helius-rpc.com/?api-key=46474128-0bcc-44ca-90e7-f729a9e99ded';
+process.env.MAINNET_RPC_URL = 'https://mainnet.helius-rpc.com/?api-key=46474128-0bcc-44ca-90e7-f729a9e99ded';
 
 if (!AbortSignal.timeout) {
     AbortSignal.timeout = ms => {
@@ -17,19 +21,3 @@ Object.defineProperty(Uint8Array, Symbol.hasInstance, {
         return originalHasInstance.call(this, potentialInstance) || Buffer.isBuffer(potentialInstance);
     },
 });
-
-// Mock problematic packages that have ESM/CommonJS conflicts
-vi.mock('@solflare-wallet/utl-sdk', () => ({
-    ChainId: {},
-    Client: vi.fn(),
-    Token: vi.fn(),
-    UtlConfig: {},
-}));
-
-vi.mock('@bundlr-network/client', () => ({
-    default: vi.fn(),
-}));
-
-vi.mock('@metaplex-foundation/js', () => ({
-    Metaplex: vi.fn(),
-}));

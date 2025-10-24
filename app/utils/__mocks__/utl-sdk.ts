@@ -1,4 +1,4 @@
-// Mock for @solflare-wallet/utl-sdk to work in Storybook browser environment
+// Browser-compatible mock for @solflare-wallet/utl-sdk (Node.js-only package)
 export const ChainId = {
     SOLANA_MAINNET: 101,
     SOLANA_TESTNET: 102,

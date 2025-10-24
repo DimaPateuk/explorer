@@ -6,6 +6,8 @@ import type { Decorator } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 import React from 'react';
 
+import { SignatureContext } from '@components/instruction/SignatureContext';
+
 import { SystemDetailsCard } from '../SystemDetailsCard';
 
 // Mock providers decorator
@@ -13,9 +15,9 @@ const withProviders: Decorator = (Story, context) => {
     return (
         <ClusterProvider>
             <RawDetailsProvider>
-                {/*<SignatureContext.Provider value="mock-signature-hash">*/}
-                <Story {...context} />
-                {/*</SignatureContext.Provider>*/}
+                <SignatureContext.Provider value="mock-signature-hash">
+                    <Story {...context} />
+                </SignatureContext.Provider>
             </RawDetailsProvider>
         </ClusterProvider>
     );

@@ -1,6 +1,5 @@
 import type { StorybookConfig } from '@storybook/experimental-nextjs-vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
-import path from 'path';
 
 const config: StorybookConfig = {
     stories: ['../app/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -24,14 +23,7 @@ const config: StorybookConfig = {
             })
         );
 
-        // Mock problematic Node.js-only packages that don't work in browser
-        config.resolve = config.resolve || {};
-        config.resolve.alias = {
-            ...config.resolve.alias,
-            '@solflare-wallet/utl-sdk': path.resolve(__dirname, './mocks/utl-sdk.ts'),
-            '@bundlr-network/client': path.resolve(__dirname, './mocks/bundlr-client.ts'),
-        };
-
+        // Node.js-only packages are handled by aliases in vite.config.mts
         return config;
     },
 };
