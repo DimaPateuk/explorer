@@ -46,6 +46,7 @@ export default defineConfig({
         conditions: ['browser', 'default'],
     },
     test: {
+        watch: false,
         coverage: {
             provider: 'v8',
         },
