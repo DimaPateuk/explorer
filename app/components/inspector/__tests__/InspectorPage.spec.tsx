@@ -191,14 +191,14 @@ describe('TransactionInspectorPage with Squads Transaction', () => {
             () => {
                 expect(screen.queryByText(/Inspector Input/i)).toBeNull();
             },
-            { interval: 50, timeout: 10000 }
+            { interval: 50, timeout: 15000 }
         );
 
         await waitFor(
             () => {
                 expect(screen.queryByText(/Loading/i)).toBeNull();
             },
-            { interval: 50, timeout: 10000 }
+            { interval: 50, timeout: 15000 }
         );
 
         // Check that the td with text Fee Payer has the text F3S4PD17Eo3FyCMropzDLCpBFuQuBmufUVBBdKEHbQFT

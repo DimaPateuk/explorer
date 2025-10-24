@@ -42,10 +42,16 @@ export default defineConfig({
             '@providers': path.resolve(__dirname, './app/providers'),
             '@utils': path.resolve(__dirname, './app/utils'),
             '@validators': path.resolve(__dirname, './app/validators'),
+
+            // Mock Node.js-only packages for browser/test environments
+            '@solflare-wallet/utl-sdk': path.resolve(__dirname, './app/utils/__mocks__/utl-sdk.ts'),
+            '@bundlr-network/client': path.resolve(__dirname, './app/utils/__mocks__/bundlr-client.ts'),
+            '@metaplex-foundation/js': path.resolve(__dirname, './app/utils/__mocks__/metaplex.ts'),
         },
         conditions: ['browser', 'default'],
     },
     test: {
+        watch: false,
         coverage: {
             provider: 'v8',
         },
